@@ -3,7 +3,7 @@ syntax = "proto3";
 package main;
 
 //aqui você define qual sdk de qual liguagem para gerar os pacotes
-option go_package = ".";
+option go_package = "pb/";
 
 // quando assim é unário
 // e quando é stream espera receber vários exemplo posso enviar um user e receber várias respostas e vice e versa

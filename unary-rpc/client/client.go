@@ -1,6 +1,7 @@
 package client
 
 import (
+	"github.com/ertelsoares/grcp-project/tree/main/unary-rpc/pb"
 	"google.golang.org/grpc"
 )
 
