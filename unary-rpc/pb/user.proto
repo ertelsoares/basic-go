@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package main;
+
+//aqui você define qual sdk de qual liguagem para gerar os pacotes
+option go_package = ".";
+
+// quando assim é unário
+// e quando é stream espera receber vários exemplo posso enviar um user e receber várias respostas e vice e versa
+// quando a gente usa stream nos dois se torna um biderecional
+service User {
+    rpc AddUser(AddUserRequest) returns(AddUserResponse);
+    rpc GetUser(GetUserRequest) returns(GetUserResponse);
+}
+
+
+message AddUserRequest{
+    string id = 1;
+    string username = 2;
+    string password = 3;
+}
+
+
+message AddUserResponse {
+    string id = 1;
+    string username = 2;
+    string password = 3; 
+}
+
+
+message GetUserRequest {
+    string id =1;
+}
+
+message GetUserResponse {
+    string id = 1;
+    string username = 2;
+    string password = 3; 
+}
