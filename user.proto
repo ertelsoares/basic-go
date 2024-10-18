@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package main;
+
+//aqui você define qual sdk de qual liguagem para gerar os pacotes
+option go_package = "/user";
+
+
+//VOCÊ PRECISA DE UM CONTRATO PARA SE COMUNICAR COM O 
+// SERVIDOR PARA ELE SABER QUAIS SEVIÇOS IRÁ UTILIZAR
+service  UserService {
+    rpc GetUser (UserRequest) returns (UserResponse);
+}
+
+// cada campo tem um id dentro do seu contexto message
+message UserRequest {
+    string id = 1;
+    string username = 2;
+    string password = 3;
+}
+
+
+message UserResponse {
+    string acessToken = 1;
+}
