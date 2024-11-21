@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+<h1>Login</h1>
+<!--teria que  passar o tempo aqui-->
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required><br><br>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <button onclick="enviarFormsLogin()">Login</button>
+
+
+
+
+
+<div id="login-result"></div>
+<script type="application/javascript">
+    async function enviarFormsLogin() {
+        var username = document.querySelector("#username");
+        var password = document.querySelector("#password");
+
+        alert("Username: " + username.value + "\n" + "Password: " + password.value)
+
+
+        const response = await fetch("/login", {
+            body: JSON.stringify({
+                username: username.value,
+                password : password.value
+            }),
+            // ...
+        });
+
+    }
+
+</script>
+</body>
+</html>

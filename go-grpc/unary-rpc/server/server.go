@@ -46,6 +46,13 @@ func Run() {
 	}
 }
 func (us *UserService) AddUser(ctx context.Context, req *pb.AddUserRequest) (*pb.AddUserResponse, error) {
+	if req == nil {
+		fmt.Println("Erro: solicitação vazia")
+		return nil, errors.New("solicitação vazia")
+	}
+
+	fmt.Printf("Recebido: ID=%s, Username=%s, Password=%s\n", req.Id, req.Username, req.Password)
+
 	us.mu.Lock()
 	defer us.mu.Unlock()
 
@@ -56,12 +63,17 @@ func (us *UserService) AddUser(ctx context.Context, req *pb.AddUserRequest) (*pb
 	}
 
 	us.users[user.ID] = user
+	fmt.Printf("Adicionando usuário: %+v\n", req)
 
-	return &pb.AddUserResponse{
+	response := &pb.AddUserResponse{
 		Id:       user.ID,
 		Username: user.UserName,
 		Password: user.Password,
-	}, nil
+	}
+
+	fmt.Printf("Respondendo com: ID=%s, Username=%s, Password=%s\n", response.Id, response.Username, response.Password) // Adicione este log
+
+	return response, nil
 }
 
 func (us *UserService) GetUser(ctx context.Context, req *pb.GetUserRequest) (*pb.GetUserResponse, error) {
